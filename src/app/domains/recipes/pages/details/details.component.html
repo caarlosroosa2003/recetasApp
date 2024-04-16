@@ -1,1 +1,10 @@
-<p> {{ recipe()?.name }} </p>
+<div class="hero bg-base-200">
+    <div class="hero-content flex-row lg:flex-row w-11/12 justify-between">
+        <img src="{{ recipeDetails()?.image }}" class="max-w-sm rounded-lg shadow-2xl" />
+        <div>
+            <h1 class="text-5xl font-bold"> {{ recipeDetails()?.name }} </h1>
+            <p class="py-6">{{ recipeDetails()?.description }}</p>
+            
+        </div>
+    </div>
+</div>

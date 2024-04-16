@@ -15,12 +15,18 @@ export default class DetailsComponent {
     @Input() id?: string;
 
     private recipeService = inject(RecipeService);
-    recipe = signal<Recipe | null>(null);
+
+    // Si no devuelve un elemento Recipe por algun fallo de base de datos o lo que sea, devuelve algo nulo
+    recipeDetails = signal<Recipe | null>(null);
 
     ngOnInit() {
-      console.log(this.id);
       if (this.id){ 
-        this.recipeService.getRecipesById(this.id);
+        this.recipeService.getRecipesById(this.id).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.recipeDetails.set(data[0]); // [0] porque Recipe es un array en la BBDD
+          }
+        })
       }
     }
 
